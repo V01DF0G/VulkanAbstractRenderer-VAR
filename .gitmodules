@@ -1,0 +1,9 @@
+[submodule "VAR/Vendor/glfw"]
+	path = VAR/Vendor/glfw
+	url = https://github.com/V01DF0G/glfw
+[submodule "VAR/Vendor/glm"]
+	path = VAR/Vendor/glm
+	url = https://github.com/g-truc/glm
+[submodule "VAR/Vendor/spdlog"]
+	path = VAR/Vendor/spdlog
+	url = https://github.com/gabime/spdlog
