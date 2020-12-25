@@ -3,7 +3,7 @@
 #include "Pch.h"
 #include "Base/VulkanBase.h"
 #include "ApplicationInfo.h"
-//#include "ValidationLayers.h"
+#include "ValidationLayers.h"
 
 class Instance
 {
@@ -16,21 +16,28 @@ public:
 	// getters
 
 	VkInstance getVkInstance() { return m_VkInstance; }
-private:
 
+private:	
 #ifdef NDEBUG
 	bool enableValidationLayers = false;
+	ValidationLayers* m_ValLayer = nullptr;
 #else
 	bool enableValidationLayers = true;
+	ValidationLayers *m_ValLayer =  new ValidationLayers(&this->m_VkInstance,&this->InstanceCreateInfo); 	
 #endif
-
+	VkInstanceCreateInfo InstanceCreateInfo = {};
 	VkInstance m_VkInstance;
 	AppInfo	m_AppInfo;
-	VkDebugUtilsMessengerEXT debugMessenger;
-	//VkDebugUtilsMessengerEXT debugMessenger;
-	//std::shared_ptr<ValidationLayer> ValidLayer = nullptr;
+	
+
+
+
+	std::vector<const char*> getRequiredExtensions();
 
 	// Constants
+
+
+
 
 
 	// Constants
