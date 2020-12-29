@@ -1,7 +1,7 @@
 #include "Pch.h"
 #include "Logger/Logger.h"
 #include "Base/VulkanBase.h"
-#include "Renderer/Instances/Instance.h"
+#include "Renderer/Renderer.h"
 
 GLFWwindow* window;
 
@@ -23,10 +23,10 @@ int main()
 
 	initWindow("Test Window", 1280, 720);
 
-	RENDER_LOG_ERR("TEST");
+	RENDER_LOG_ERR("TEST" "Test");
 	RENDER_LOG_WARN("Test1");
 
-	Instance a;
+	Renderer a;
 
 	while (!glfwWindowShouldClose(window))
 	{

@@ -15,7 +15,8 @@ public:
 
 	// getters
 
-	VkInstance getVkInstance() { return m_VkInstance; }
+	VkInstance& getVkInstance() { return m_VkInstance; }
+	ValidationLayers* getUsedValidationLayers() { return m_ValLayer;}
 
 private:	
 #ifdef NDEBUG

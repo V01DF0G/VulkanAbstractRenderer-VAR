@@ -42,9 +42,14 @@ void ValidationLayers::initDebugMessenger()
 	{
 		RENDER_LOG_ERR("Failed to init Debug Messenger !");
 	}
+	else
+	{
+		CreationStatus = true;
+	}
 }
 ValidationLayers::~ValidationLayers()
 {
+	if(CreationStatus)
 	DestroyDebugUtilsMessengerEXT(nullptr);
 }
 

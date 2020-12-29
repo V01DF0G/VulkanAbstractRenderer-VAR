@@ -19,15 +19,20 @@ public:
 	void initDebugMessenger();
 
 	~ValidationLayers();
+	// Getters
+	std::vector<const char*> getValidationLayerString() { return validationLayers; }
+
 
 private:
 	const std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
 	
-	VkInstance *m_VkInstanceAdress;
-	 VkInstanceCreateInfo *m_VkInstanceCreateInfoAdress;
+	VkInstance *m_VkInstanceAdress = nullptr;
+	 VkInstanceCreateInfo *m_VkInstanceCreateInfoAdress = nullptr;
 
-	VkDebugUtilsMessengerCreateInfoEXT m_DebugMessengerInfo;
-	VkDebugUtilsMessengerEXT m_DebugMessenger;
+	 VkDebugUtilsMessengerCreateInfoEXT m_DebugMessengerInfo = {};
+	VkDebugUtilsMessengerEXT m_DebugMessenger = VK_NULL_HANDLE;
+
+	bool CreationStatus = false;
 
 	static VKAPI_ATTR VkBool32 VKAPI_CALL debugCallBack
 	(
@@ -50,7 +55,7 @@ private:
 		m_DebugMessengerInfo = {};
 		m_DebugMessengerInfo.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
 		m_DebugMessengerInfo.messageSeverity = //VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT
-			 VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT
+			/*|*/ VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT
 			| VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;
 			//| VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT;
 		m_DebugMessengerInfo.messageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;

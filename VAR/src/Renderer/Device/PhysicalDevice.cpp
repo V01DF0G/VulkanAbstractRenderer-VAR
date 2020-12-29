@@ -2,13 +2,18 @@
 #include "../Logger/Logger.h"
 
 
-PhysicalDevices::PhysicalDevices(VkInstance& TargetInstance)
+PhysicalDevices::PhysicalDevices(VkInstance TargetInstance)
 {
-	vkEnumeratePhysicalDevices(TargetInstance, &DeviceCount, VKPhysDevices.data());
+
+	vkEnumeratePhysicalDevices(TargetInstance, &DeviceCount, nullptr);
+	VKPhysDevices.resize(DeviceCount);
 	if (DeviceCount == 0)
 	{
 		RENDER_LOG_CRIT("There are no GPU's that support Vulkan in your machine");
 	}
+	
+	
+	vkEnumeratePhysicalDevices(TargetInstance, &DeviceCount, VKPhysDevices.data());
 
 	for (auto& device : VKPhysDevices)
 	{
@@ -24,6 +29,8 @@ PhysicalDevices::PhysicalDevices(VkInstance& TargetInstance)
 		RENDER_LOG_CRIT("failed to find a suitable GPU!");
 	}
 
+	vkGetPhysicalDeviceProperties(selectedVKPhysDevice, &PhysDevProps);
+	vkGetPhysicalDeviceFeatures(selectedVKPhysDevice, &PhysDevFeatures);
 }
 
 PhysicalDevices::~PhysicalDevices()
@@ -35,6 +42,7 @@ PhysicalDevices::~PhysicalDevices()
 
 bool PhysicalDevices::isPhysicalDeviceSuitable(VkPhysicalDevice targetDevice)
 {
+	findQueueFamilies(targetDevice);
 	return FamilyIndices.isComplete();
 }
 
