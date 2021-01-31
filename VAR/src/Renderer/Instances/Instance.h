@@ -12,11 +12,13 @@ public:
 
 	~Instance();
 
+	void createInstance();
+
 
 	// getters
 
-	VkInstance& getVkInstance() { return m_VkInstance; }
-	ValidationLayers* getUsedValidationLayers() { return m_ValLayer;}
+	inline VkInstance& getVkInstance() { return m_VkInstance; }
+	inline ValidationLayers* getUsedValidationLayers() { return m_ValLayer;}
 
 private:	
 #ifdef NDEBUG
@@ -30,17 +32,9 @@ private:
 	VkInstance m_VkInstance;
 	AppInfo	m_AppInfo;
 	
-
-
-
 	std::vector<const char*> getRequiredExtensions();
 
 	// Constants
-
-
-
-
-
 	// Constants
 
 };

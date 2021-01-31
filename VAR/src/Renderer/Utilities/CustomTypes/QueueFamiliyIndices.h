@@ -3,12 +3,12 @@
 
 struct QueueFamilyIndices
 {
-	std::optional<uint32_t> graphicsFamily;
-	//std::optional<uint32_t> presentationFamily;
+	uint32_t graphicsFamily = -1;
+	uint32_t presentationFamily = -1;
 	
 
 	bool isComplete()
 	{
-		return graphicsFamily.has_value();// && presentationFamily.has_value();
+		return graphicsFamily != UINT32_MAX && presentationFamily != UINT32_MAX;
 	}
 };

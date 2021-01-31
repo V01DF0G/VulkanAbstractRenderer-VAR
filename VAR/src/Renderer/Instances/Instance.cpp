@@ -5,13 +5,28 @@
 
 Instance::Instance()
 {
+
+}
+
+Instance::~Instance()
+{
+	if (m_ValLayer != nullptr)
+	{
+		m_ValLayer->~ValidationLayers();
+	}
+	vkDestroyInstance(m_VkInstance, nullptr);
+
+}
+
+void Instance::createInstance()
+{
 	if (m_ValLayer != nullptr && !m_ValLayer->CheckValidationLayerSupport())
 	{
 		RENDER_LOG_ERR("Validation Layers were requested but there is no support for them in this machine !");
 		delete m_ValLayer;
 		m_ValLayer = nullptr;
 	}
-	
+
 	InstanceCreateInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
 	InstanceCreateInfo.pApplicationInfo = m_AppInfo.m_VKAppInfo.get();
 
@@ -39,19 +54,8 @@ Instance::Instance()
 	}
 	if (m_ValLayer != nullptr)
 	{
-	m_ValLayer->initDebugMessenger();
+		m_ValLayer->initDebugMessenger();
 	}
-}
-
-Instance::~Instance()
-{
-	if (m_ValLayer != nullptr)
-	{
-		m_ValLayer->~ValidationLayers();
-		m_ValLayer;
-	}
-	vkDestroyInstance(m_VkInstance, nullptr);
-
 }
 
 std::vector<const char*> Instance::getRequiredExtensions()

@@ -20,7 +20,7 @@ public:
 
 	~ValidationLayers();
 	// Getters
-	std::vector<const char*> getValidationLayerString() { return validationLayers; }
+	inline std::vector<const char*> getValidationLayerString() { return validationLayers; }
 
 
 private:

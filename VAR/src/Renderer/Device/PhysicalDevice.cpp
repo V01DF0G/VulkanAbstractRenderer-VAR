@@ -1,36 +1,44 @@
 #include "PhysicalDevice.h"
 #include "../Logger/Logger.h"
 
-
-PhysicalDevices::PhysicalDevices(VkInstance TargetInstance)
+PhysicalDevices::PhysicalDevices(std::shared_ptr<Instance> TargetInstance, std::shared_ptr<WindowMP> Targetwindow)
+	:m_TargetedInstance(TargetInstance), m_TargetedWindow(Targetwindow)
 {
+}
 
-	vkEnumeratePhysicalDevices(TargetInstance, &DeviceCount, nullptr);
+void PhysicalDevices::checkCompWithVulkan()
+{
+	vkEnumeratePhysicalDevices(m_TargetedInstance->getVkInstance(), &DeviceCount, nullptr);
 	VKPhysDevices.resize(DeviceCount);
+
 	if (DeviceCount == 0)
 	{
 		RENDER_LOG_CRIT("There are no GPU's that support Vulkan in your machine");
 	}
-	
-	
-	vkEnumeratePhysicalDevices(TargetInstance, &DeviceCount, VKPhysDevices.data());
 
+	vkEnumeratePhysicalDevices(m_TargetedInstance->getVkInstance(), &DeviceCount, VKPhysDevices.data());
+}
+
+void PhysicalDevices::PickBestPhysicalDevice()
+{
 	for (auto& device : VKPhysDevices)
 	{
-		if (isPhysicalDeviceSuitable(device))
+		if (isPhysicalDeviceSuitable(device, m_TargetedWindow->getSurface()))
 		{
 			selectedVKPhysDevice = device;
 			break;
 		}
 	}
 
-	if (selectedVKPhysDevice == VK_NULL_HANDLE) 
+	if (selectedVKPhysDevice == VK_NULL_HANDLE)
 	{
 		RENDER_LOG_CRIT("failed to find a suitable GPU!");
 	}
 
 	vkGetPhysicalDeviceProperties(selectedVKPhysDevice, &PhysDevProps);
 	vkGetPhysicalDeviceFeatures(selectedVKPhysDevice, &PhysDevFeatures);
+
+	int i = 0;
 }
 
 PhysicalDevices::~PhysicalDevices()
@@ -40,13 +48,15 @@ PhysicalDevices::~PhysicalDevices()
 
 
 
-bool PhysicalDevices::isPhysicalDeviceSuitable(VkPhysicalDevice targetDevice)
+bool PhysicalDevices::isPhysicalDeviceSuitable(VkPhysicalDevice targetDevice, VkSurfaceKHR targetSurface)
 {
-	findQueueFamilies(targetDevice);
+	findQueueFamilies(targetDevice, targetSurface);
+	CheckDeviceExtensionSupport(targetDevice);
+
 	return FamilyIndices.isComplete();
 }
 
-QueueFamilyIndices PhysicalDevices::findQueueFamilies(VkPhysicalDevice targetDevice)
+void PhysicalDevices::findQueueFamilies(VkPhysicalDevice targetDevice, VkSurfaceKHR targetSurface)
 {
 
 	uint32_t queueFamilyCount = 0;
@@ -63,12 +73,37 @@ QueueFamilyIndices PhysicalDevices::findQueueFamilies(VkPhysicalDevice targetDev
 			FamilyIndices.graphicsFamily = i;
 		}
 
+		VkBool32 presentationSupport = false;
+		vkGetPhysicalDeviceSurfaceSupportKHR(targetDevice, i, targetSurface , &presentationSupport);
+
+		if (presentationSupport)
+		{
+			FamilyIndices.presentationFamily = i;
+		}
+
+
 		if (FamilyIndices.isComplete())
 		{
 			break;
 		}
 		i++;
 	}
+}
 
-	return FamilyIndices;
+void PhysicalDevices::CheckDeviceExtensionSupport(VkPhysicalDevice Targetdevice)
+{
+	uint32_t extensionCount;
+	vkEnumerateDeviceExtensionProperties(Targetdevice, nullptr, &extensionCount, nullptr);
+
+	std::vector<VkExtensionProperties> availableExtensions(extensionCount);
+	vkEnumerateDeviceExtensionProperties(Targetdevice, nullptr, &extensionCount, availableExtensions.data());
+
+	std::set<std::string> requiredExtensions(PhysicalDeviceExtensions.begin(), PhysicalDeviceExtensions.end());
+
+	for (const auto& extension : availableExtensions)
+	{
+		requiredExtensions.erase(extension.extensionName);
+	}
+
+	DeviceExtensionSupportStatus = requiredExtensions.empty();
 }

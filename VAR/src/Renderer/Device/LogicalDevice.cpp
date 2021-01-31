@@ -4,25 +4,37 @@
 LogicalDevice::LogicalDevice(std::shared_ptr<Instance> TargetInstance,std::shared_ptr<PhysicalDevices> TargetDevice)
 	:m_Instance(TargetInstance), m_physDevices(TargetDevice)
 {
-	m_PhysicalDeviceFeatures = m_physDevices->getDeviceFeatures();
+	
+}
 
-	m_deviceQueueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-	m_deviceQueueCreateInfo.queueFamilyIndex = m_physDevices->getFamilyIndices().graphicsFamily.value();
-	m_deviceQueueCreateInfo.queueCount = 1;
-
+void LogicalDevice::CreateLogicalDevice()
+{
 	float queuPriority = 1.0f;
-	m_deviceQueueCreateInfo.pQueuePriorities = &queuPriority;
+	std::set<uint32_t> uniqueQueueFamilies = { m_physDevices->getFamilyIndices().graphicsFamily, m_physDevices->getFamilyIndices().presentationFamily };
+
+	for (uint32_t queueFamily : uniqueQueueFamilies) 
+	{
+		VkDeviceQueueCreateInfo queueCreateInfo{};
+		queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+		queueCreateInfo.queueFamilyIndex = queueFamily;
+		queueCreateInfo.queueCount = 1;
+		queueCreateInfo.pQueuePriorities = &queuPriority;
+		m_deviceQueueCreateInfos.push_back(queueCreateInfo);
+	}
+
 
 	m_deviceCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
 
-	m_deviceCreateInfo.pQueueCreateInfos = &m_deviceQueueCreateInfo;
-	m_deviceCreateInfo.queueCreateInfoCount = 1;
+	m_deviceCreateInfo.queueCreateInfoCount = static_cast<uint32_t>(m_deviceQueueCreateInfos.size());
+	m_deviceCreateInfo.pQueueCreateInfos = m_deviceQueueCreateInfos.data();
 
 
-	m_deviceCreateInfo.pEnabledFeatures = &m_PhysicalDeviceFeatures;
+	VkPhysicalDeviceFeatures tempFeatures = m_physDevices->getDeviceFeatures();
+	m_deviceCreateInfo.pEnabledFeatures = &tempFeatures;
 
-	m_deviceCreateInfo.enabledExtensionCount = 0;
-
+	m_deviceCreateInfo.enabledExtensionCount = static_cast<uint32_t>(m_physDevices->getPhysicalDeviceExtensions().size());
+	std::vector<const char*> tempExtensionNames = m_physDevices->getPhysicalDeviceExtensions();
+	m_deviceCreateInfo.ppEnabledExtensionNames = tempExtensionNames.data();
 
 
 	if (m_Instance->getUsedValidationLayers() != nullptr)
@@ -46,9 +58,10 @@ LogicalDevice::LogicalDevice(std::shared_ptr<Instance> TargetInstance,std::share
 	{
 		RENDER_LOG_INFO("Successfully created logical device !");
 	}
-	vkGetDeviceQueue(m_VkLogicalDevice, m_physDevices->getFamilyIndices().graphicsFamily.value(), 0, &m_graphicsQueue);
-
+	vkGetDeviceQueue(m_VkLogicalDevice, m_physDevices->getFamilyIndices().graphicsFamily, 0, &m_graphicsQueue);
+	vkGetDeviceQueue(m_VkLogicalDevice, m_physDevices->getFamilyIndices().presentationFamily, 0, &m_presentQueue);
 }
+
 
 LogicalDevice::~LogicalDevice()
 {
