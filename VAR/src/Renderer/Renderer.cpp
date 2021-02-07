@@ -2,6 +2,7 @@
 #include "Renderer.h"
 #include "Logger.h"
 
+
 Renderer::Renderer()
 {
 	m_window->createWindow(); // Creates Window
@@ -9,8 +10,8 @@ Renderer::Renderer()
 	m_physicalDevice->checkCompWithVulkan(); // Checks whether the physical device is compatible with vulkan;
 	m_window->createSurface(m_instance->getVkInstance()); // Creates surface
 	m_physicalDevice->PickBestPhysicalDevice(); // Picks Best physicalDevice
-	RENDER_LOG_INFO(std::string("DriverVersion: ") + std::to_string(m_physicalDevice->getDeviceProps().vendorID));
-	RENDER_LOG_INFO(std::string("GPU: ") + std::string(m_physicalDevice->getDeviceProps().deviceName));	
+	RENDER_LOG_INFO("Vulkan API Version: {0}.{1}.{2}", m_instance->getUsedMajorVulkanVersion(), m_instance->getUsedMinorVulkanVersion(), m_instance->getUsedPatchVulkanVersion());
+	RENDER_LOG_INFO("GPU: {0}", m_physicalDevice->getDeviceProps().deviceName);	
 	m_Swapchain->PopulateSupportDetails();
 	m_LogicalDevice->CreateLogicalDevice();	
 	m_Swapchain->ChooseExtSurPreModes();

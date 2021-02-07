@@ -30,8 +30,8 @@ project "VAR"
             targetdir ("bin/" .. outputdir .. "/%{prj.name}")
             objdir("bin-int/" .. outputdir .. "/%{prj.name}")
 
-            pchheader = "Pch.h"
-            pchsource = "VAR/src/Precompiled/Pch.cpp"
+            pchheader "Pch.h"
+            pchsource "VAR/src/Precompiled/Pch.cpp"
 
 
             files
@@ -67,9 +67,9 @@ project "VAR"
             }
 
             links
-            {
-                "GLFW",
-                "vulkan-1.lib"
+            {   
+                "vulkan-1.lib",           
+                "GLFW", 
             }
             
 
