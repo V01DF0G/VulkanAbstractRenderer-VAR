@@ -1,0 +1,17 @@
+﻿  Building Custom Rule C:/PROJECTS/VulkanAbstractRenderer-VAR/VAR/CMakeLists.txt
+  Pch.cpp
+  main.cpp
+  Logger.cpp
+  Renderer.cpp
+  LogicalDevice.cpp
+  PhysicalDevice.cpp
+  ImageViews.cpp
+  Instance.cpp
+  ValidationLayers.cpp
+  SwapChain.cpp
+  readFile.cpp
+  GetSuffix.cpp
+  compileShader.cpp
+  getShaderType.cpp
+  WindowMultiPlatform.cpp
+LINK : fatal error LNK1104: cannot open file 'Vendor\glslang\SPIRV\Debug\SPIRVd.lib'

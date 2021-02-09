@@ -8,6 +8,7 @@
 #include "WindowMultiPlatform.h"
 #include "Swapchain/SwapChain.h"
 #include "ImageViews/ImageViews.h"
+#include "Utilities/ShaderCompiler/compileShader.h"
 
 
 class Renderer
@@ -26,5 +27,7 @@ private:
 	std::shared_ptr<LogicalDevice> m_LogicalDevice = std::make_shared<LogicalDevice>(m_instance,m_physicalDevice);
 	std::shared_ptr<SwapChain> m_Swapchain = std::make_shared<SwapChain>(m_LogicalDevice, m_physicalDevice, m_window);
 	std::shared_ptr<ImageViews> m_ImageViews = std::make_shared<ImageViews>(m_LogicalDevice, m_Swapchain);
+
+
 
 };

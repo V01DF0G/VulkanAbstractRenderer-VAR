@@ -2,6 +2,9 @@
 .vs/
 /bin/
 bin-int/
+.vscode/
+/build/
+/VAR.dir/
 
 #include Files
 .user
@@ -9,3 +12,19 @@ bin-int/
 **.vcxproj
 **.vcxproj.filters
 **.vcxproj.user
+
+
+/CMake/
+/CMakeFiles/
+**CMakeLists.txt.user
+**CMakeCache.txt
+**CMakeFiles
+**CMakeScripts
+**Testing
+**Makefile
+**cmake_install.cmake
+**install_manifest.txt
+**compile_commands.json
+**CTestTestfile.cmake
+**_deps
+x64/
