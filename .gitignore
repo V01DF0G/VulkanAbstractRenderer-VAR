@@ -28,3 +28,6 @@ bin-int/
 **CTestTestfile.cmake
 **_deps
 x64/
+
+*.gch
+*.pch
