@@ -3,8 +3,9 @@
 /bin/
 bin-int/
 .vscode/
-/build/
+build/
 VAR/VAR.dir/
+
 
 #include Files
 .user
