@@ -20,7 +20,6 @@ Renderer::Renderer()
 
 	m_window->Run();
 
-	std::vector<unsigned int> spirv = ShaderCompiler::compileGlslToSvp("VAR/Shaders/GLSL/Vertex/test.vert");
 	
 	while (m_window->getStatus() && !glfwWindowShouldClose(m_window->getGlfwWindow()))
 	{
