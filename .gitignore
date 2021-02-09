@@ -4,7 +4,7 @@
 bin-int/
 .vscode/
 /build/
-/VAR.dir/
+VAR/VAR.dir/
 
 #include Files
 .user
@@ -29,5 +29,5 @@ bin-int/
 **_deps
 x64/
 
-*.gch
-*.pch
+**.gch
+**.pch
