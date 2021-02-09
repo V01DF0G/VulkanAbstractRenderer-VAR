@@ -15,7 +15,6 @@ VAR/VAR.dir/
 **.vcxproj.user
 
 
-/CMake/
 /CMakeFiles/
 **CMakeLists.txt.user
 **CMakeCache.txt
