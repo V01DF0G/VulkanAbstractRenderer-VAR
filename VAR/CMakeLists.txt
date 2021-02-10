@@ -82,11 +82,6 @@ set(src__Renderer__Window
 source_group("src\\Renderer\\Window" FILES ${src__Renderer__Window})
 
 set(ALL_FILES
-    ${Vendor__glm__glm}
-    ${Vendor__glm__glm__detail}
-    ${Vendor__glm__glm__ext}
-    ${Vendor__glm__glm__gtc}
-    ${Vendor__glm__glm__gtx}
     ${src}
     ${src__Logger}
     ${src__Precompiled}
@@ -102,13 +97,9 @@ set(ALL_FILES
     ${src__Renderer__Window}
 )
 
-################################################################################
-# Target
-################################################################################
-
 add_executable(${PROJECT_NAME} ${ALL_FILES})
 
-add_precompiled_header(${PROJECT_NAME} "Pch.h" "src/Precompiled/Pch.cpp")
+target_precompile_headers(${PROJECT_NAME} PRIVATE "src/Precompiled/Pch.h")
 
 use_props(${PROJECT_NAME} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
 
@@ -118,43 +109,27 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     VS_GLOBAL_KEYWORD "Win32Proj"
 )
 
-################################################################################
-# Target name
-################################################################################
-
 set_target_properties(${PROJECT_NAME} PROPERTIES
     TARGET_NAME_DEBUG   "VAR"
     TARGET_NAME_RELEASE "VAR"
 )
-
-################################################################################
-# Output directory
-################################################################################
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
     OUTPUT_DIRECTORY_DEBUG   "${CMAKE_CURRENT_SOURCE_DIR}/../bin/Debug-windows-x86_64/VAR/"
     OUTPUT_DIRECTORY_RELEASE "${CMAKE_CURRENT_SOURCE_DIR}/../bin/Release-windows-x86_64/VAR/"
 )
 
-################################################################################
-# MSVC runtime library
-################################################################################
-
 get_property(MSVC_RUNTIME_LIBRARY_DEFAULT TARGET ${PROJECT_NAME} PROPERTY MSVC_RUNTIME_LIBRARY)
 string(CONCAT "MSVC_RUNTIME_LIBRARY_STR"
     $<$<CONFIG:Debug>:
-        MultiThreadedDebug
+        MultiThreadedDebugDLL
     >
     $<$<CONFIG:Release>:
-        MultiThreaded
+        MultiThreadedDLL
     >
     $<$<NOT:$<OR:$<CONFIG:Debug>,$<CONFIG:Release>>>:${MSVC_RUNTIME_LIBRARY_DEFAULT}>
 )
 set_target_properties(${PROJECT_NAME} PROPERTIES MSVC_RUNTIME_LIBRARY ${MSVC_RUNTIME_LIBRARY_STR})
-
-################################################################################
-# Include directories
-################################################################################
 
 target_include_directories(${PROJECT_NAME} PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Logger;"
@@ -186,14 +161,12 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Utilities/Math;"
     "${CMAKE_CURRENT_SOURCE_DIR}/Vendor/spdlog/include;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Precompiled;"
-    "${CMAKE_CURRENT_SOURCE_DIR}/Vendor/glfw/include;"
+    "${GLFW_INCLUDE_DIR}"
     "${CMAKE_CURRENT_SOURCE_DIR}/Vendor/Vulkan/Include;"
-    "${CMAKE_CURRENT_SOURCE_DIR}/Vendor/glm"
+    "${CMAKE_CURRENT_SOURCE_DIR}/Vendor/glm;"
 )
 
-################################################################################
-# Compile definitions
-################################################################################
+
 target_compile_definitions(${PROJECT_NAME} PRIVATE
     "$<$<CONFIG:Debug>:"
         "DEBUG"
@@ -206,10 +179,6 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
     "UNICODE;"
     "_UNICODE"
 )
-
-################################################################################
-# Compile and link options
-################################################################################
 
 if(MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE
@@ -245,19 +214,12 @@ if(MSVC)
     )
 endif()
 
-################################################################################
-# Dependencies
-################################################################################
 
-add_dependencies(${PROJECT_NAME}
-    GLFW
-    glm
-)
+add_dependencies(${PROJECT_NAME} glfw )
 
 # Link with other targets.
 target_link_libraries(${PROJECT_NAME} PRIVATE
-    GLFW
-    glm
+    glfw
 )
 
 set(ADDITIONAL_LIBRARY_DEPENDENCIES
