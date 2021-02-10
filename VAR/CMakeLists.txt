@@ -55,6 +55,12 @@ set(src__Renderer__Instances
 )
 source_group("src\\Renderer\\Instances" FILES ${src__Renderer__Instances})
 
+set(src__Renderer__ShaderModules
+    "src/Renderer/ShaderModules/ShaderModules.h"
+    "src/Renderer/ShaderModules/ShaderModules.cpp"
+)
+source_group("src\\Renderer\\ShaderModules" FILES ${src__Renderer__ShaderModules})
+
 set(src__Renderer__Swapchain
     "src/Renderer/Swapchain/SwapChain.cpp"
     "src/Renderer/Swapchain/SwapChain.h"
@@ -90,6 +96,7 @@ set(ALL_FILES
     ${src__Renderer__Device}
     ${src__Renderer__ImageViews}
     ${src__Renderer__Instances}
+    ${src__Renderer__ShaderModules}
     ${src__Renderer__Swapchain}
     ${src__Renderer__Utilities__CustomTypes}
     ${src__Renderer__Utilities__FileManagment}
@@ -140,6 +147,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Errors;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/ImageViews;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Instances;"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/ShaderModules;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Pipelines;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Shaders;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Swapchain;"
