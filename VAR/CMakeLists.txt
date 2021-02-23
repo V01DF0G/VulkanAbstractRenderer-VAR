@@ -56,8 +56,8 @@ set(src__Renderer__Instances
 source_group("src\\Renderer\\Instances" FILES ${src__Renderer__Instances})
 
 set(src__Renderer__ShaderModules
-    "src/Renderer/ShaderModules/ShaderModules.h"
-    "src/Renderer/ShaderModules/ShaderModules.cpp"
+    "src/Renderer/ShaderModules/ShaderModule.h"
+    "src/Renderer/ShaderModules/ShaderModule.cpp"
 )
 source_group("src\\Renderer\\ShaderModules" FILES ${src__Renderer__ShaderModules})
 
@@ -78,6 +78,8 @@ set(src__Renderer__Utilities__FileManagment
     "src/Renderer/Utilities/FileManagment/readFile.h"
     "src/Renderer/Utilities/FileManagment/GetSuffix.cpp"
     "src/Renderer/Utilities/FileManagment/GetSuffix.h"
+    "src/Renderer/Utilities/FileManagment/GetShaderTypeString.h"
+    "src/Renderer/Utilities/FileManagment/GetShaderTypeString.cpp"
 )
 source_group("src\\Renderer\\Utilities\\FileManagment" FILES ${src__Renderer__Utilities__FileManagment})
 
@@ -100,7 +102,6 @@ set(ALL_FILES
     ${src__Renderer__Swapchain}
     ${src__Renderer__Utilities__CustomTypes}
     ${src__Renderer__Utilities__FileManagment}
-    ${src__Renderer__Utilities__ShaderCompiler}
     ${src__Renderer__Window}
 )
 
@@ -149,20 +150,10 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Instances;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/ShaderModules;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Pipelines;"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Shaders;"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/ShaderModules;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Swapchain;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Utilities;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Window;"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Shaders/GLSL;"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Shaders/SPV;"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Shaders/GLSL/Compute;"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Shaders/GLSL/Frag;"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Shaders/GLSL/Geometry;"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Shaders/GLSL/Vertex;"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Shaders/SPV/Compute;"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Shaders/SPV/Frag;"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Shaders/SPV/Geometry;"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Shaders/SPV/Vertex;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Utilities/CustomTypes;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Utilities/FileManagment;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Utilities/Functions;"

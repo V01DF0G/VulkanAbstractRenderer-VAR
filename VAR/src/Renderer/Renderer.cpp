@@ -9,7 +9,7 @@ Renderer::Renderer()
 	m_instance->createInstance(); // Creates instance 
 	m_physicalDevice->checkCompWithVulkan(); // Checks whether the physical device is compatible with vulkan;
 	m_window->createSurface(m_instance->getVkInstance()); // Creates surface
-	m_physicalDevice->PickBestPhysicalDevice(); // Picks Best physicalDevice
+	m_physicalDevice->PickBestPhysicalDevice(); // Picks Best physical Device
 	RENDER_LOG_INFO("Vulkan API Version: {0}.{1}.{2}", m_instance->getUsedMajorVulkanVersion(), m_instance->getUsedMinorVulkanVersion(), m_instance->getUsedPatchVulkanVersion());
 	RENDER_LOG_INFO("GPU: {0}", m_physicalDevice->getDeviceProps().deviceName);	
 	m_Swapchain->PopulateSupportDetails();
@@ -17,6 +17,16 @@ Renderer::Renderer()
 	m_Swapchain->ChooseExtSurPreModes();
 	m_Swapchain->CreateSwapchain();
 	m_ImageViews->CreateImageViews();
+
+	m_shaderModules.emplace_back(m_LogicalDevice, "./src/Shaders/Compiled/Vertex/test.vert.spv");
+	m_shaderModules.emplace_back(m_LogicalDevice, "./src/Shaders/Compiled/Fragment/test.frag.spv");
+
+
+	for (auto& current : m_shaderModules)
+	{
+		current.createShaderModule();
+	}
+	RENDER_LOG_INFO(m_shaderModules[0].getTargetLocation());
 
 	m_window->Run();
 
