@@ -88,6 +88,8 @@ void SwapChain::CreateSwapchain()
 	vkGetSwapchainImagesKHR(m_TargetedLogicalDevice->GetVkLogicalDevice(), VkSwapchain, &imageCount, nullptr);
 	swapChainImages.resize(imageCount);
 	vkGetSwapchainImagesKHR(m_TargetedLogicalDevice->GetVkLogicalDevice(), VkSwapchain, &imageCount, swapChainImages.data());
+
+	currentSwapchainImageFormat = currentSurfaceFormat.format;
 }
 
 void SwapChain::ChooseExtSurPreModes()

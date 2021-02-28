@@ -17,16 +17,11 @@ Renderer::Renderer()
 	m_Swapchain->ChooseExtSurPreModes();
 	m_Swapchain->CreateSwapchain();
 	m_ImageViews->CreateImageViews();
+	m_ShaderModules->createShaderModules();
+	m_PipelineLayout->createPipelineLayout();
+	m_RenderPass->createRenderPass();
+	m_GraphicsPipeline->createGraphicsPipeline();
 
-	m_shaderModules.emplace_back(m_LogicalDevice, "./src/Shaders/Compiled/Vertex/test.vert.spv");
-	m_shaderModules.emplace_back(m_LogicalDevice, "./src/Shaders/Compiled/Fragment/test.frag.spv");
-
-
-	for (auto& current : m_shaderModules)
-	{
-		current.createShaderModule();
-	}
-	RENDER_LOG_INFO(m_shaderModules[0].getTargetLocation());
 
 	m_window->Run();
 

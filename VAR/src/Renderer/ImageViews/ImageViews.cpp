@@ -13,7 +13,7 @@ void ImageViews::CreateImageViews()
 		createInfo.sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
 		createInfo.image = m_TargetedSwapchain->getSwapchainImages()[i];
 		createInfo.viewType = VK_IMAGE_VIEW_TYPE_2D;
-		createInfo.format = m_TargetedSwapchain->getcurrentSurfaceFormat().format;
+		createInfo.format = m_TargetedSwapchain->getcurrentSwapchainSurfaceFormat().format;
 		createInfo.components.r = VK_COMPONENT_SWIZZLE_IDENTITY;
 		createInfo.components.g = VK_COMPONENT_SWIZZLE_IDENTITY;
 		createInfo.components.b = VK_COMPONENT_SWIZZLE_IDENTITY;

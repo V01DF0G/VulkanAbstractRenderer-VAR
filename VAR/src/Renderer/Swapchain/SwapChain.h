@@ -22,12 +22,13 @@ public:
 
 	virtual ~SwapChain();
 
-	inline VkSwapchainKHR getVkSwapChain() { return VkSwapchain; }
-	inline SwapchainSupportDetails getSupportDetails() { return supportDetails; }
-	inline std::vector<VkImage> getSwapchainImages() { return swapChainImages; }
-	inline VkSurfaceFormatKHR getcurrentSurfaceFormat() { return currentSurfaceFormat; }
-	inline VkExtent2D getcurrentSwapchainExtent() { return currentSwapchainExtent; }
-	inline VkPresentModeKHR getcurrentPresentationMode() { return currentPresentationMode; }
+	inline VkSwapchainKHR getVkSwapChain() const { return VkSwapchain; }
+	inline SwapchainSupportDetails getSupportDetails() const { return supportDetails; }
+	inline std::vector<VkImage> getSwapchainImages() const { return swapChainImages; }
+	inline VkSurfaceFormatKHR getcurrentSwapchainSurfaceFormat() const { return currentSurfaceFormat; }
+	inline VkFormat getcurrentSwapchainImageFormat() const { return currentSwapchainImageFormat; }
+	inline VkExtent2D getcurrentSwapchainExtent() const { return currentSwapchainExtent; }
+	inline VkPresentModeKHR getcurrentPresentationMode() const { return currentPresentationMode; }
 
 private:
 	SwapchainSupportDetails supportDetails = {};

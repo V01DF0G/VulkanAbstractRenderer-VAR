@@ -40,6 +40,13 @@ set(src__Renderer__Device
 )
 source_group("src\\Renderer\\Device" FILES ${src__Renderer__Device})
 
+set(src__Renderer__GraphicsPipeline
+    "src/Renderer/GraphicsPipeline/GraphicsPipeline.cpp"
+    "src/Renderer/GraphicsPipeline/GraphicsPipeline.h"
+)
+source_group("src\\Renderer\\GraphicsPipeline" FILES ${src__Renderer__GraphicsPipeline})
+
+
 set(src__Renderer__ImageViews
     "src/Renderer/ImageViews/ImageViews.cpp"
     "src/Renderer/ImageViews/ImageViews.h"
@@ -55,9 +62,21 @@ set(src__Renderer__Instances
 )
 source_group("src\\Renderer\\Instances" FILES ${src__Renderer__Instances})
 
+set(src__Renderer__PipelineLayout
+    "src/Renderer/PipelineLayout/PipelineLayout.cpp"
+    "src/Renderer/PipelineLayout/PipelineLayout.h"
+)
+source_group("src\\Renderer\\PipelineLayout" FILES ${src__Renderer__PipelineLayout})
+
+set(src__Renderer__RenderPass
+    "src/Renderer/RenderPass/RenderPass.cpp"
+    "src/Renderer/RenderPass/RenderPass.h"
+)
+source_group("src\\Renderer\\RenderPass" FILES ${src__Renderer__RenderPass})
+
 set(src__Renderer__ShaderModules
-    "src/Renderer/ShaderModules/ShaderModule.h"
-    "src/Renderer/ShaderModules/ShaderModule.cpp"
+    "src/Renderer/ShaderModules/ShaderModules.h"
+    "src/Renderer/ShaderModules/ShaderModules.cpp"
 )
 source_group("src\\Renderer\\ShaderModules" FILES ${src__Renderer__ShaderModules})
 
@@ -98,6 +117,9 @@ set(ALL_FILES
     ${src__Renderer__Device}
     ${src__Renderer__ImageViews}
     ${src__Renderer__Instances}
+    ${src__Renderer__GraphicsPipeline}
+    ${src__Renderer__PipelineLayout}
+    ${src__Renderer__RenderPass}
     ${src__Renderer__ShaderModules}
     ${src__Renderer__Swapchain}
     ${src__Renderer__Utilities__CustomTypes}
@@ -148,6 +170,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Errors;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/ImageViews;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Instances;"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/PipelineLayout;"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Renderpass;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/ShaderModules;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Pipelines;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/ShaderModules;"
