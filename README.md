@@ -1,2 +1,4 @@
-# VulkanAbstractRenderer-VAR
-This project is meant to abstractize the Vulkan Api to make it simpler to learn about the architecture of Vulkan
+# VAR
+# Vulkan Abstract Renderer
+VAR is a Renderer/Library meant to make Vulkan API simple to use while still maintaining it's flexibility and explicitness.
+Also it's goal is to make the best learning grounds for those who wish to learn more about the Vulkan API with structured code and it's code calls.
