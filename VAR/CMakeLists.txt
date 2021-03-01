@@ -68,6 +68,21 @@ set(src__Renderer__PipelineLayout
 )
 source_group("src\\Renderer\\PipelineLayout" FILES ${src__Renderer__PipelineLayout})
 
+set(src__Renderer__Rendering)
+source_group("src\\Renderer\\Rendering" FILES ${src__Renderer__PipelineLayout})
+
+set(src__Renderer__Rendering__CommandBuffers
+    "src/Renderer/Rendering/CommandBuffers/CommandBufferPool.cpp"
+    "src/Renderer/Rendering/CommandBuffers/CommandBufferPool.h"
+    )
+source_group("src\\Renderer\\Rendering\\CommandBuffers" FILES ${src__Renderer__Rendering__CommandBuffers})
+
+set(src__Renderer__Rendering__FrameBuffers
+    "src/Renderer/Rendering/CommandBuffers/FrameBufferPool.cpp"
+    "src/Renderer/Rendering/CommandBuffers/FrameBufferPool.h"
+    )
+source_group("src\\Renderer\\Rendering\\FramBuffers" FILES ${src__Renderer__Rendering__FrameBuffers})
+
 set(src__Renderer__RenderPass
     "src/Renderer/RenderPass/RenderPass.cpp"
     "src/Renderer/RenderPass/RenderPass.h"
@@ -119,6 +134,9 @@ set(ALL_FILES
     ${src__Renderer__Instances}
     ${src__Renderer__GraphicsPipeline}
     ${src__Renderer__PipelineLayout}
+    ${src__Renderer__Rendering}
+    ${src__Renderer__Rendering__CommandBuffers}
+    ${src__Renderer__Rendering__FrameBuffers}
     ${src__Renderer__RenderPass}
     ${src__Renderer__ShaderModules}
     ${src__Renderer__Swapchain}
@@ -171,6 +189,9 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/ImageViews;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Instances;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/PipelineLayout;"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Rendering;"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Rendering/CommandBuffers;"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Rendering/FrameBuffers;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Renderpass;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/ShaderModules;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Pipelines;"
