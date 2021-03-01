@@ -13,6 +13,9 @@ public:
 	GraphicsPipeline(std::shared_ptr<LogicalDevice> TargetedDevice,std::shared_ptr<PipelineLayout> TargetedLayout, std::shared_ptr<RenderPass> TargetedRenderPass, std::shared_ptr<ShaderModules> TargetedShaderModules);
 	void createGraphicsPipeline();
 	~GraphicsPipeline();
+
+
+	inline VkPipeline getvkPipeline() const { return m_vkPipeline; }
 private:
 	std::shared_ptr<LogicalDevice> m_TargetDevice = nullptr;
 	std::shared_ptr<PipelineLayout> m_TargetLayout = nullptr;

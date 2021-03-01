@@ -247,6 +247,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 
 set(ADDITIONAL_LIBRARY_DEPENDENCIES
     "vulkan-1"
+
 )
 target_link_libraries(${PROJECT_NAME} PRIVATE "${ADDITIONAL_LIBRARY_DEPENDENCIES}")
 

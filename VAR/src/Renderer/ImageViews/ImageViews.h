@@ -15,7 +15,8 @@ public:
 
 	virtual ~ImageViews();
 
-	inline std::vector<VkImageView> getVkImageViews() { return VkImageViews; }
+	inline std::vector<VkImageView> getVkImageViews() const { return VkImageViews; }
+	inline std::shared_ptr<SwapChain> getTargetedSwapchain() const { return m_TargetedSwapchain; }
 private:
 	std::vector<VkImageView> VkImageViews;
 
