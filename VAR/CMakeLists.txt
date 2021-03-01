@@ -78,8 +78,8 @@ set(src__Renderer__Rendering__CommandBuffers
 source_group("src\\Renderer\\Rendering\\CommandBuffers" FILES ${src__Renderer__Rendering__CommandBuffers})
 
 set(src__Renderer__Rendering__FrameBuffers
-    "src/Renderer/Rendering/CommandBuffers/FrameBufferPool.cpp"
-    "src/Renderer/Rendering/CommandBuffers/FrameBufferPool.h"
+    "src/Renderer/Rendering/FrameBuffers/FrameBufferPool.cpp"
+    "src/Renderer/Rendering/FrameBuffers/FrameBufferPool.h"
     )
 source_group("src\\Renderer\\Rendering\\FramBuffers" FILES ${src__Renderer__Rendering__FrameBuffers})
 
