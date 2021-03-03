@@ -21,19 +21,23 @@ Renderer::Renderer()
 	m_PipelineLayout->createPipelineLayout();
 	m_RenderPass->createRenderPass();
 	m_GraphicsPipeline->createGraphicsPipeline();
+
 	m_FrameBufferPool->createFrameBuffers();
+
 	m_CommandBufferPool->createCommandPool();
 	m_CommandBufferPool->createCommandBuffers();
 	m_CommandBufferPool->startCommandBufferRecord();
 	m_CommandBufferPool->startTargetedRenderPass();
+	m_GraphicsThreadPool->createSyncThreads(m_ImageViews->getVkImageViews().size());
 
 
 	m_window->Run();
 	
 	while (m_window->getStatus() && !glfwWindowShouldClose(m_window->getGlfwWindow()))
 	{
+		
+		m_FrameDrawer->drawFrame();
 		glfwPollEvents();
-
 	}
 
 }

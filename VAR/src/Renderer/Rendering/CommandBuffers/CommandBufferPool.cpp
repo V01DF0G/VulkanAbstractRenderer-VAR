@@ -72,7 +72,7 @@ void CommandBufferPool::startTargetedRenderPass()
 	m_TargetedRenderPassBeginInfo.renderPass = m_TargetRenderPass->getvkRenderPass();
 	m_TargetedRenderPassBeginInfo.renderArea.offset = { 0 , 0 };
 	m_TargetedRenderPassBeginInfo.renderArea.extent = m_TargetRenderPass->getTargetedSwapchain()->getcurrentSwapchainExtent();
-	VkClearValue clearColor = { 0.0f, 1.0f, 0.0f, 1.0f };
+	VkClearValue clearColor = { 0.0f, 0.3f, 0.0f, 1.0f };
 	m_TargetedRenderPassBeginInfo.clearValueCount = 1;
 	m_TargetedRenderPassBeginInfo.pClearValues = &clearColor;
 	for (size_t i = 0; i < m_CommandBuffers.size(); i++)
@@ -89,11 +89,11 @@ void CommandBufferPool::startTargetedRenderPass()
 
 		if (vkEndCommandBuffer(m_CommandBuffers[i]) != VK_SUCCESS)
 		{
-			RENDER_LOG_CRIT("Fission Mailed we get them next time!");
+			RENDER_LOG_CRIT("Failed to record command buffer");
 		}
 		else
 		{
-			RENDER_LOG_INFO("Mission Succesfull !");
+			RENDER_LOG_INFO("Succesfully recorded command buffer");
 		}
 
 	}

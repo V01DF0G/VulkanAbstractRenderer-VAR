@@ -14,6 +14,8 @@
 #include "GraphicsPipeline/GraphicsPipeline.h"
 #include "Rendering/FrameBuffers/FrameBufferPool.h"
 #include "Rendering/CommandBuffers/CommandBufferPool.h"
+#include "Rendering/MultiThreading/GraphicsThreadPool.h"
+#include "Rendering/FrameDrawer.h"
 
 class Renderer
 {
@@ -38,4 +40,6 @@ private:
 	std::shared_ptr<GraphicsPipeline> m_GraphicsPipeline = std::make_shared<GraphicsPipeline>(m_LogicalDevice, m_PipelineLayout, m_RenderPass, m_ShaderModules);
 	std::shared_ptr<FrameBufferPool> m_FrameBufferPool = std::make_shared<FrameBufferPool>(m_LogicalDevice, m_RenderPass, m_ImageViews);
 	std::shared_ptr<CommandBufferPool> m_CommandBufferPool = std::make_shared<CommandBufferPool>(m_LogicalDevice, m_physicalDevice, m_RenderPass, m_FrameBufferPool, m_GraphicsPipeline);
+	std::shared_ptr<GraphicsThreadPool> m_GraphicsThreadPool = std::make_shared<GraphicsThreadPool>(m_LogicalDevice);
+	std::shared_ptr<FrameDrawer> m_FrameDrawer = std::make_shared<FrameDrawer>(m_LogicalDevice, m_Swapchain, m_CommandBufferPool, m_GraphicsThreadPool);
 };

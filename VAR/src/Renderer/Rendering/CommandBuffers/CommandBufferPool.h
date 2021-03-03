@@ -20,7 +20,7 @@ public:
 	void startCommandBufferRecord();
 	void startTargetedRenderPass();
 
-	std::vector<VkCommandBuffer> getCommandBuffers() const { return m_CommandBuffers; }
+	inline std::vector<VkCommandBuffer> &getCommandBuffers() { return m_CommandBuffers; }
 private:
 	std::shared_ptr<LogicalDevice> m_TargetDevice = nullptr;
 	std::shared_ptr<RenderPass> m_TargetRenderPass = nullptr;

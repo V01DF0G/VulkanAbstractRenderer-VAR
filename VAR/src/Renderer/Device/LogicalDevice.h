@@ -12,6 +12,8 @@ public:
 	void CreateLogicalDevice();
 
 	inline VkDevice GetVkLogicalDevice() { return m_VkLogicalDevice; }
+	inline VkQueue getGraphicsQueue() { return m_graphicsQueue; }
+	inline VkQueue getPresentationQueue() { return m_presentQueue; }
 
 	 ~LogicalDevice();
 private:
