@@ -28,7 +28,7 @@ public:
 	inline bool getStatus() { return isRunning; }
 
 private:
-	DefWindow m_window;
+	DefWindow m_window = {};
 	GLFWwindow* m_GlfwWindow = nullptr;
 	VkSurfaceKHR m_surface = VK_NULL_HANDLE;
 	bool isRunning = false;

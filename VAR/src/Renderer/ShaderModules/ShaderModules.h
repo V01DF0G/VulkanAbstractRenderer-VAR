@@ -26,7 +26,7 @@ public:
 	std::vector<ShaderModule> getCurrentShaderModules() const { return m_currentShaderModules; }
 
 private:
-	std::shared_ptr<LogicalDevice> m_TargetedDevice = VK_NULL_HANDLE;
+	std::shared_ptr<LogicalDevice> m_TargetedDevice = nullptr;
 	std::vector<ShaderModule> m_currentShaderModules;
 
 

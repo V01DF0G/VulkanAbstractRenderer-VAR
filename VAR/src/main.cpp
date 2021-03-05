@@ -11,7 +11,6 @@ int main()
 {
 	Log::init();
 	Renderer a;
-
 	
 	return 0;
 }

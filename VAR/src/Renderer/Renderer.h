@@ -22,9 +22,7 @@ class Renderer
 public:
 	Renderer();
 
-
-
-	virtual ~Renderer();
+	 ~Renderer();
 
 private:
 	std::vector<const char*> ShaderLocs = { "./src/Shaders/Compiled/Vertex/test.vert.spv", "./src/Shaders/Compiled/Fragment/test.frag.spv" };

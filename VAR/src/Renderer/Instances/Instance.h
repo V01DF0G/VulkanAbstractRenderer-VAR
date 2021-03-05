@@ -33,8 +33,8 @@ private:
 	ValidationLayers *m_ValLayer =  new ValidationLayers(&this->m_VkInstance,&this->InstanceCreateInfo); 	
 #endif
 	VkInstanceCreateInfo InstanceCreateInfo = {};
-	VkInstance m_VkInstance;
-	AppInfo m_AppInfo;
+	VkInstance m_VkInstance = VK_NULL_HANDLE;
+	AppInfo m_AppInfo = {};
 	
 	std::vector<const char*> getRequiredExtensions();
 

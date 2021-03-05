@@ -37,14 +37,14 @@ private:
 	std::shared_ptr<PhysicalDevices> m_TargetedPhysicalDevices = nullptr;
 	std::shared_ptr<WindowMP> m_TargetedWindow = nullptr;
 
-	VkSwapchainKHR VkSwapchain;
+	VkSwapchainKHR VkSwapchain = VK_NULL_HANDLE;
 	VkSwapchainCreateInfoKHR VkSwapchainInfo = {};
-	std::vector<VkImage> swapChainImages;
-	VkFormat currentSwapchainImageFormat;
+	std::vector<VkImage> swapChainImages = { VK_NULL_HANDLE };
+	VkFormat currentSwapchainImageFormat = VK_FORMAT_UNDEFINED;
 
-	VkExtent2D currentSwapchainExtent;
-	VkSurfaceFormatKHR currentSurfaceFormat;
-	VkPresentModeKHR currentPresentationMode;
+	VkExtent2D currentSwapchainExtent = { 0, 0 };
+	VkSurfaceFormatKHR currentSurfaceFormat = { VK_FORMAT_UNDEFINED, VK_COLOR_SPACE_MAX_ENUM_KHR };
+	VkPresentModeKHR currentPresentationMode = VK_PRESENT_MODE_MAX_ENUM_KHR;
 
 	void chooseSwapSurfaceFormat();
 	void chooseSwapPresentationMode();

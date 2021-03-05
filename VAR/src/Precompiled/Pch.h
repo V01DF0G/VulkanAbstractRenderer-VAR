@@ -2,7 +2,6 @@
 
 #define NOMINMAX
 #include <iostream>
-#include <windows.h>
 
 #include <string>
 #include <fstream>
@@ -27,5 +26,5 @@
 #include <cmath>
 #include <bitset>
 
-#include "Utilities/CustomTypes/QueueFamiliyIndices.h"
+//#include "Utilities/CustomTypes/QueueFamiliyIndices.h"
 

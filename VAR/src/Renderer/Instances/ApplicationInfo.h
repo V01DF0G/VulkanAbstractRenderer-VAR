@@ -18,11 +18,11 @@ struct AppInfo
 		m_VKAppInfo = std::move(VKAppInfo); // Move local pointer with values to accessor pointer hence it is a smart pointer VKappInfo will be automatically deleted because it is empty
 	}
 	 //Accessors for versatility 
-	const char* m_App_Name;
-	const char* m_Engine_Name;
-	uint32_t m_AppVersion;
-	uint32_t m_EngineVersion;
-	uint32_t m_APIVersion;
-	void* m_Pnext;
+	const char* m_App_Name = nullptr;
+	const char* m_Engine_Name = nullptr;
+	uint32_t m_AppVersion = 0;
+	uint32_t m_EngineVersion = 0;
+	uint32_t m_APIVersion = 0;
+	void* m_Pnext = nullptr;
 	std::unique_ptr<VkApplicationInfo> m_VKAppInfo; // Pointer to the duplicate-less VkAppInfo VkApplicationInfo vulkan specific type 
 };

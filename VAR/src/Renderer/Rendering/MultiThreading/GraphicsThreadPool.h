@@ -20,12 +20,12 @@ public:
 	std::vector<VkFence>& getimagesInFlight() { return m_imagesInFlight; }
 
 private:
-	std::shared_ptr<LogicalDevice> m_TargetDevice;
+	std::shared_ptr<LogicalDevice> m_TargetDevice = nullptr;
 
-	std::vector<VkSemaphore> m_imageAvailableSemaphores;
-	std::vector<VkSemaphore> m_imageRenderFinisihedSemaphores;
-	std::vector<VkFence> m_inFlightFences;
-	std::vector<VkFence> m_imagesInFlight;
+	std::vector<VkSemaphore> m_imageAvailableSemaphores = {};
+	std::vector<VkSemaphore> m_imageRenderFinisihedSemaphores = {};
+	std::vector<VkFence> m_inFlightFences = {};
+	std::vector<VkFence> m_imagesInFlight = {};
 
 	VkSemaphoreCreateInfo m_semaphoreCreateInfo = {};
 	VkFenceCreateInfo m_fenceCreateInfo = {};

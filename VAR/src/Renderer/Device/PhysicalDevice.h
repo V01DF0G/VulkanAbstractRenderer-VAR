@@ -35,11 +35,11 @@ private:
 	bool DeviceExtensionSupportStatus = false;
 
 	VkPhysicalDevice selectedVKPhysDevice = VK_NULL_HANDLE;
-	std::vector<VkPhysicalDevice> VKPhysDevices;
-	VkPhysicalDeviceProperties PhysDevProps;
-	VkPhysicalDeviceFeatures PhysDevFeatures;
-	std::vector<VkQueueFamilyProperties> PhysDevQueueFams;
-	QueueFamilyIndices FamilyIndices;
+	std::vector<VkPhysicalDevice> VKPhysDevices = {};
+	VkPhysicalDeviceProperties PhysDevProps = {};
+	VkPhysicalDeviceFeatures PhysDevFeatures = {};
+	std::vector<VkQueueFamilyProperties> PhysDevQueueFams = {};
+	QueueFamilyIndices FamilyIndices = {};
 	void findQueueFamilies(VkPhysicalDevice targetDevice, VkSurfaceKHR targetSurface);
 	void CheckDeviceExtensionSupport(VkPhysicalDevice targetDevice);
 	bool isPhysicalDeviceSuitable(VkPhysicalDevice targetDevice, VkSurfaceKHR targetSurface);

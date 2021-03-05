@@ -46,6 +46,10 @@ set(src__Renderer__GraphicsPipeline
 )
 source_group("src\\Renderer\\GraphicsPipeline" FILES ${src__Renderer__GraphicsPipeline})
 
+set(src__Renderer__GraphicsPipeline__FixedFuncs
+    "src/Renderer/GraphicsPipeline/FixedFuncs/FixedFuncStruct.h"
+)
+source_group("src\\Renderer\\GraphicsPipeline\\FixedFuncs" FILES ${src__Renderer__GraphicsPipeline__FixedFuncs})
 
 set(src__Renderer__ImageViews
     "src/Renderer/ImageViews/ImageViews.cpp"
@@ -142,6 +146,7 @@ set(ALL_FILES
     ${src__Renderer__ImageViews}
     ${src__Renderer__Instances}
     ${src__Renderer__GraphicsPipeline}
+    ${src__Renderer__GraphicsPipeline__FixedFuncs}
     ${src__Renderer__PipelineLayout}
     ${src__Renderer__Rendering}
     ${src__Renderer__Rendering__CommandBuffers}

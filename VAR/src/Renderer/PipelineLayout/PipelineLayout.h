@@ -15,5 +15,5 @@ public:
 private:
 	VkPipelineLayoutCreateInfo m_LayoutCreateInfo = {};
 	VkPipelineLayout m_vkPipelineLayout = VK_NULL_HANDLE;
-	std::shared_ptr<LogicalDevice> m_TargetDevice;
+	std::shared_ptr<LogicalDevice> m_TargetDevice = nullptr;
 };

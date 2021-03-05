@@ -15,11 +15,11 @@ public:
 
 	inline std::vector<VkFramebuffer> getFrameBuffers() const { return m_FrameBuffers; }
 private:
-	std::shared_ptr<LogicalDevice> m_TargetDevice;
-	std::shared_ptr<RenderPass> m_TargetRenderPass;
-	std::shared_ptr<ImageViews> m_TargetImageViews;
+	std::shared_ptr<LogicalDevice> m_TargetDevice = nullptr;
+	std::shared_ptr<RenderPass> m_TargetRenderPass = nullptr;
+	std::shared_ptr<ImageViews> m_TargetImageViews = nullptr;
 
-	std::vector<VkFramebuffer> m_FrameBuffers;
+	std::vector<VkFramebuffer> m_FrameBuffers = {};
 	VkFramebufferCreateInfo m_FrameBufferInfo = {};
 
 };

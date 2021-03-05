@@ -25,7 +25,7 @@ private:
 	std::shared_ptr<Instance> m_Instance = nullptr;
 	std::vector<const char*> m_ValidationString = {};
 	std::shared_ptr<PhysicalDevices> m_physDevices = nullptr;
-	VkPhysicalDeviceFeatures m_PhysicalDeviceFeatures;
+	VkPhysicalDeviceFeatures m_PhysicalDeviceFeatures = {};
 
 };
 

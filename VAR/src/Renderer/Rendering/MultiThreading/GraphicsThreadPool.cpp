@@ -11,6 +11,7 @@ GraphicsThreadPool::GraphicsThreadPool(std::shared_ptr<LogicalDevice> TargetedDe
 
 GraphicsThreadPool::~GraphicsThreadPool()
 {
+	vkDeviceWaitIdle(m_TargetDevice->GetVkLogicalDevice());
 	for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; i++)
 	{
 		vkDestroySemaphore(m_TargetDevice->GetVkLogicalDevice(), m_imageRenderFinisihedSemaphores[i], nullptr);

@@ -2,6 +2,7 @@
 
 #include "Pch.h"
 #include "Base/VulkanBase.h"
+#include "FixedFuncs/FixedFuncStruct.h"
 #include "PipelineLayout/PipelineLayout.h"
 #include "ShaderModules/ShaderModules.h"
 #include "RenderPass/RenderPass.h"
@@ -24,18 +25,9 @@ private:
 
 	VkGraphicsPipelineCreateInfo m_PipelineCreateInfo = {};
 	VkPipeline m_vkPipeline = VK_NULL_HANDLE;
+	std::shared_ptr<FixedFuncStruct> m_FixedFuncs = std::make_shared<FixedFuncStruct>();
 
-	//Fixed Funcs
-	VkPipelineVertexInputStateCreateInfo m_vertexInputInfo{};
-	VkPipelineInputAssemblyStateCreateInfo m_inputAssemblyCreateInfo{};
 	VkPipelineViewportStateCreateInfo m_ViewportStateCreateInfo{};
-	VkPipelineRasterizationStateCreateInfo m_RasterizerInfo{};
-	VkPipelineMultisampleStateCreateInfo m_MultisamplingInfo{};
-	VkPipelineColorBlendAttachmentState m_colorBlendAttachmentInfo{};
-	VkPipelineColorBlendStateCreateInfo m_colorBlendingStateInfo{};
-	VkPipelineDynamicStateCreateInfo m_dynamicStateCreateInfo{};
 
-	//FixedFunc functors
-	void fillFixedFuncs();
-
+	
 };

@@ -22,6 +22,6 @@ private:
 	VkRenderPass m_VkRenderPass = VK_NULL_HANDLE;
 	VkSubpassDescription m_SubpassInfo = {};
 
-	std::shared_ptr<SwapChain> m_targetSwapchain;
-	std::shared_ptr<LogicalDevice> m_targetDevice;
+	std::shared_ptr<SwapChain> m_targetSwapchain = nullptr;
+	std::shared_ptr<LogicalDevice> m_targetDevice = nullptr;
 };

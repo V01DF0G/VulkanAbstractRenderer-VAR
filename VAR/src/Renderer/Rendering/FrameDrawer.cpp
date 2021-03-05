@@ -17,8 +17,6 @@ FrameDrawer::FrameDrawer(std::shared_ptr<LogicalDevice> TargetedDevice, std::sha
 
 FrameDrawer::~FrameDrawer()
 {
-	vkWaitForFences(m_TargetDevice->GetVkLogicalDevice(), 1, &m_TargetGThreadPool->getinFlightFences()[currentframe], VK_TRUE, UINT64_MAX); // For security reasons
-	vkWaitForFences(m_TargetDevice->GetVkLogicalDevice(), 1, &m_TargetGThreadPool->getimagesInFlight()[currentframe], VK_TRUE, UINT64_MAX); // Culprit of the validation crisis
 }
 
 void FrameDrawer::drawFrame()
