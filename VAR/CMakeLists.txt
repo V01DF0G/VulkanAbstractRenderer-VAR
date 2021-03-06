@@ -222,7 +222,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/Vendor/spdlog/include;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Precompiled;"
     "${GLFW_INCLUDE_DIR}"
-    "${CMAKE_CURRENT_SOURCE_DIR}/Vendor/Vulkan/Include;"
+    "${CMAKE_CURRENT_SOURCE_DIR}/Vendor/Vulkan/glad/include;"
     "${CMAKE_CURRENT_SOURCE_DIR}/Vendor/glm;"
 )
 
@@ -275,20 +275,10 @@ if(MSVC)
 endif()
 
 
-add_dependencies(${PROJECT_NAME} glfw )
+add_dependencies(${PROJECT_NAME} glfw glad)
 
 # Link with other targets.
 target_link_libraries(${PROJECT_NAME} PRIVATE
-    glfw
-)
-
-set(ADDITIONAL_LIBRARY_DEPENDENCIES
-    "vulkan-1"
-
-)
-target_link_libraries(${PROJECT_NAME} PRIVATE "${ADDITIONAL_LIBRARY_DEPENDENCIES}")
-
-target_link_directories(${PROJECT_NAME} PRIVATE
-    "${CMAKE_CURRENT_SOURCE_DIR}/Vendor/Vulkan/Lib"
+    glfw glad
 )
 

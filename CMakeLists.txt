@@ -86,12 +86,15 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 ################################################################################
 add_subdirectory(VAR)
 
+
+
+add_subdirectory(VAR/Vendor/Vulkan/glad)
+add_subdirectory(VAR/Vendor/glfw)
+add_subdirectory(VAR/Vendor/glm)
+
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(GLFW_INSTALL OFF CACHE BOOL  "GLFW lib only" )
-set(GLFW_VULKAN_STATIC ON)
-
-add_subdirectory(VAR/Vendor/glfw)
-add_subdirectory(VAR/Vendor/glm)
+set(GLFW_VULKAN_STATIC ON CACHE BOOL "" FORCE)
 

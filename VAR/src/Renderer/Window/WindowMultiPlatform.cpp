@@ -9,6 +9,11 @@ WindowMP::WindowMP()
 
 void WindowMP::createWindow()
 {
+	if (!gladLoaderLoadVulkan(VK_NULL_HANDLE, VK_NULL_HANDLE, VK_NULL_HANDLE)) // to init instance creation
+	{
+		RENDER_LOG_CRIT("Failed to load vulkan from glad")
+	} 
+
 	glfwInit();
 
 	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);

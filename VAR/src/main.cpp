@@ -9,6 +9,7 @@ GLFWwindow* window;
 
 int main()
 {
+
 	Log::init();
 	Renderer a;
 	

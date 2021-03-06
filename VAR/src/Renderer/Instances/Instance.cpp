@@ -7,7 +7,6 @@ namespace VAR_CORE
 {
 	Instance::Instance()
 	{
-	
 	}
 	
 	Instance::~Instance()

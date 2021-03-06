@@ -60,6 +60,11 @@ namespace VAR_CORE
 		else
 		{
 			RENDER_LOG_INFO("Successfully created logical device !");
+			if (!gladLoaderLoadVulkan(m_Instance->getVkInstance(), m_physDevices->getSelectedPhysDevice(), m_VkLogicalDevice))
+			{
+				RENDER_LOG_CRIT("Unexpected error, invalid vkInstance or invalid vkPhysicalDevice or invalid vkLogicalDevice")
+			}
+			
 		}
 		vkGetDeviceQueue(m_VkLogicalDevice, m_physDevices->getFamilyIndices().graphicsFamily, 0, &m_graphicsQueue);
 		vkGetDeviceQueue(m_VkLogicalDevice, m_physDevices->getFamilyIndices().presentationFamily, 0, &m_presentQueue);

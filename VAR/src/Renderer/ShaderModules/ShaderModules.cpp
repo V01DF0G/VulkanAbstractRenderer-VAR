@@ -72,7 +72,7 @@ namespace VAR_CORE
 	
 		default:
 			RENDER_LOG_ERR("Unknown shaderType!");
-			return VK_SHADER_STAGE_FLAG_BITS_MAX_ENUM;
+			return VK_SHADER_STAGE_ALL;
 		}
 	}
 }
