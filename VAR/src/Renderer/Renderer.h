@@ -17,6 +17,9 @@
 #include "Rendering/MultiThreading/GraphicsThreadPool.h"
 #include "Rendering/FrameDrawer.h"
 
+
+using namespace VAR_CORE;
+
 class Renderer
 {
 public:

@@ -4,16 +4,19 @@
 #include "Device/LogicalDevice.h"
 #include "Swapchain/SwapChain.h"
 
-class PipelineLayout
+namespace VAR_CORE
 {
-public:
-	PipelineLayout(std::shared_ptr<LogicalDevice> TargetedDevice);
-	~PipelineLayout();
-
-	inline VkPipelineLayout getvkPipelineLayout() const { return m_vkPipelineLayout; }
-	void createPipelineLayout();
-private:
-	VkPipelineLayoutCreateInfo m_LayoutCreateInfo = {};
-	VkPipelineLayout m_vkPipelineLayout = VK_NULL_HANDLE;
-	std::shared_ptr<LogicalDevice> m_TargetDevice = nullptr;
-};
+	class PipelineLayout
+	{
+	public:
+		PipelineLayout(std::shared_ptr<LogicalDevice> TargetedDevice);
+		~PipelineLayout();
+	
+		inline VkPipelineLayout getvkPipelineLayout() const { return m_vkPipelineLayout; }
+		void createPipelineLayout();
+	private:
+		VkPipelineLayoutCreateInfo m_LayoutCreateInfo = {};
+		VkPipelineLayout m_vkPipelineLayout = VK_NULL_HANDLE;
+		std::shared_ptr<LogicalDevice> m_TargetDevice = nullptr;
+	};
+}

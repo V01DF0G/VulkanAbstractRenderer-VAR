@@ -9,33 +9,36 @@
 
 
 
-class CommandBufferPool
+namespace VAR_CORE
 {
-public:
-	CommandBufferPool(std::shared_ptr<LogicalDevice> TargetedDevice, std::shared_ptr<PhysicalDevices> TargetedPhysDevs, std::shared_ptr<RenderPass> TargetedRenderPass, std::shared_ptr<FrameBufferPool> TargetedFrameBuffer, std::shared_ptr<GraphicsPipeline> TargetedGraphicsPipeline);
-	~CommandBufferPool();
-
-	void createCommandPool();
-	void createCommandBuffers();
-	void startCommandBufferRecord();
-	void startTargetedRenderPass();
-
-	inline std::vector<VkCommandBuffer> &getCommandBuffers() { return m_CommandBuffers; }
-private:
-	std::shared_ptr<LogicalDevice> m_TargetDevice = nullptr;
-	std::shared_ptr<RenderPass> m_TargetRenderPass = nullptr;
-	std::shared_ptr<PhysicalDevices> m_TargetPhysicalDevice = nullptr;
-	std::shared_ptr<FrameBufferPool> m_TargetFrameBufferPool = nullptr;
-	std::shared_ptr<GraphicsPipeline> m_TargetGraphicsPipeline = nullptr;
-
-	VkCommandPool m_CommandPool;
-	VkCommandPoolCreateInfo m_CommandPoolInfo = {};
-
-	VkCommandBufferAllocateInfo m_CommandBufferAllocInfo = {};
-	std::vector<VkCommandBuffer> m_CommandBuffers;
-
-	VkCommandBufferBeginInfo m_commandBufferBeginInfo = {};
-
-	VkRenderPassBeginInfo m_TargetedRenderPassBeginInfo = {};
+	class CommandBufferPool
+	{
+	public:
+		CommandBufferPool(std::shared_ptr<LogicalDevice> TargetedDevice, std::shared_ptr<PhysicalDevices> TargetedPhysDevs, std::shared_ptr<RenderPass> TargetedRenderPass, std::shared_ptr<FrameBufferPool> TargetedFrameBuffer, std::shared_ptr<GraphicsPipeline> TargetedGraphicsPipeline);
+		~CommandBufferPool();
 	
-};
+		void createCommandPool();
+		void createCommandBuffers();
+		void startCommandBufferRecord();
+		void startTargetedRenderPass();
+	
+		inline std::vector<VkCommandBuffer> &getCommandBuffers() { return m_CommandBuffers; }
+	private:
+		std::shared_ptr<LogicalDevice> m_TargetDevice = nullptr;
+		std::shared_ptr<RenderPass> m_TargetRenderPass = nullptr;
+		std::shared_ptr<PhysicalDevices> m_TargetPhysicalDevice = nullptr;
+		std::shared_ptr<FrameBufferPool> m_TargetFrameBufferPool = nullptr;
+		std::shared_ptr<GraphicsPipeline> m_TargetGraphicsPipeline = nullptr;
+	
+		VkCommandPool m_CommandPool;
+		VkCommandPoolCreateInfo m_CommandPoolInfo = {};
+	
+		VkCommandBufferAllocateInfo m_CommandBufferAllocInfo = {};
+		std::vector<VkCommandBuffer> m_CommandBuffers;
+	
+		VkCommandBufferBeginInfo m_commandBufferBeginInfo = {};
+	
+		VkRenderPassBeginInfo m_TargetedRenderPassBeginInfo = {};
+		
+	};
+}
