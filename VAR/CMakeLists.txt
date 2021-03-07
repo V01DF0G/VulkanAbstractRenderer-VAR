@@ -160,7 +160,7 @@ set(ALL_FILES
     ${src__Renderer__Window}
 )
 
-add_executable(${PROJECT_NAME} ${ALL_FILES})
+add_library(${PROJECT_NAME} STATIC ${ALL_FILES})
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE "src/Precompiled/Pch.h")
 
@@ -278,7 +278,7 @@ endif()
 add_dependencies(${PROJECT_NAME} glfw glad)
 
 # Link with other targets.
-target_link_libraries(${PROJECT_NAME} PRIVATE
+target_link_libraries(${PROJECT_NAME} PUBLIC
     glfw glad
 )
 

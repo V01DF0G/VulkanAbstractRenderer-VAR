@@ -85,7 +85,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 # Sub-projects
 ################################################################################
 add_subdirectory(VAR)
-
+add_subdirectory(Sandbox)
 
 
 add_subdirectory(VAR/Vendor/Vulkan/glad)
