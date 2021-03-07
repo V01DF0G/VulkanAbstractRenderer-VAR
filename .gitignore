@@ -1,6 +1,8 @@
 #include Directories
 .vs/
 /bin/
+/Debug/
+/Release/
 bin-int/
 .vscode/
 build/
