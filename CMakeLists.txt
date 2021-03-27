@@ -85,7 +85,6 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 # Sub-projects
 ################################################################################
 add_subdirectory(VAR)
-add_subdirectory(Sandbox)
 
 
 add_subdirectory(VAR/Vendor/Vulkan/glad)
@@ -97,4 +96,6 @@ set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(GLFW_INSTALL OFF CACHE BOOL  "GLFW lib only" )
 set(GLFW_VULKAN_STATIC ON CACHE BOOL "" FORCE)
+
+add_subdirectory(Sandbox)
 

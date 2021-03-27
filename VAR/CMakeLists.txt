@@ -4,11 +4,6 @@ set(PROJECT_NAME VAR)
 # Source groups
 ################################################################################
 
-set(src
-    "src/main.cpp"
-)
-source_group("src" FILES ${src})
-
 set(src__Logger
     "src/Logger/Logger.cpp"
     "src/Logger/Logger.h"
@@ -137,7 +132,6 @@ set(src__Renderer__Window
 source_group("src\\Renderer\\Window" FILES ${src__Renderer__Window})
 
 set(ALL_FILES
-    ${src}
     ${src__Logger}
     ${src__Precompiled}
     ${src__Renderer}
