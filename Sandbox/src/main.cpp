@@ -9,5 +9,11 @@ int main()
 	a.AllocateRendererObjects();
 	a.Init();
 
+	while (a.isRendererRunning())
+	{
+		a.rendererDrawFrame();
+		a.rendererPollEvents();
+	}
+
 	return 0;
 }

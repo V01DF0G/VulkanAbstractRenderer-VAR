@@ -57,15 +57,6 @@ namespace VAR_CORE
 			m_CommandBufferPool->startTargetedRenderPass();
 			m_GraphicsThreadPool->createSyncThreads(m_ImageViews->getVkImageViews().size());
 
-
-			m_window->Run();
-
-			while (m_window->getStatus() && !glfwWindowShouldClose(m_window->getGlfwWindow()))
-			{
-
-				m_FrameDrawer->drawFrame();
-				glfwPollEvents();
-			}
 		}
 
 

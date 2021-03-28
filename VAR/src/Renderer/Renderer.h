@@ -30,6 +30,9 @@ namespace VAR_CORE
 			void Init();
 			void AllocateRendererObjects();
 			void setShaderLocs(std::vector<const char*> val) { ShaderLocs = val; }
+			inline bool isRendererRunning() { return m_window->isWindowRunning(); }
+			inline void rendererPollEvents() { return glfwPollEvents(); }
+			inline void rendererDrawFrame() { return m_FrameDrawer->drawFrame(); }
 
 			~Renderer();
 

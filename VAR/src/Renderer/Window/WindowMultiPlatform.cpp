@@ -40,11 +40,6 @@ namespace VAR_CORE
 		}
 	}
 
-	void WindowMP::Run()
-	{
-		isRunning = true;
-	}
-
 	WindowMP::~WindowMP()
 	{
 		vkDestroySurfaceKHR(*m_instanceAdress, m_surface, nullptr);

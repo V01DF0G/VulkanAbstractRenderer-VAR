@@ -22,19 +22,17 @@ namespace VAR_CORE
 		WindowMP();
 		void createWindow();
 		void createSurface(VkInstance& targetInstance);
-		void Run();
 
 		~WindowMP();
 
 		inline GLFWwindow* getGlfwWindow() { return m_GlfwWindow; }
 		inline VkSurfaceKHR getSurface() { return m_surface; }
-		inline bool getStatus() { return isRunning; }
+		inline bool isWindowRunning() { return !glfwWindowShouldClose(m_GlfwWindow); }
 
 	private:
 		DefWindow m_window = {};
 		GLFWwindow* m_GlfwWindow = nullptr;
 		VkSurfaceKHR m_surface = VK_NULL_HANDLE;
-		bool isRunning = false;
 		VkInstance* m_instanceAdress = nullptr;
 	};
 }
