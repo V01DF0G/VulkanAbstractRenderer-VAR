@@ -1,4 +1,5 @@
 #include "Renderer/Renderer.h"
+#include "glm/glm.hpp"
 
 
 int main()
@@ -8,6 +9,10 @@ int main()
 	a.setShaderLocs(shaderList);
 	a.AllocateRendererObjects();
 	a.Init();
+
+	glm::vec2 abs = { 0.5, 0.1 };
+
+	int aasd = 5;
 
 	while (a.isRendererRunning())
 	{
