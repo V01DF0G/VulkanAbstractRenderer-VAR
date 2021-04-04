@@ -12,6 +12,7 @@ namespace VAR_CORE
 	public:
 		LogicalDevice(std::shared_ptr<Instance> TargetInstance, std::shared_ptr<PhysicalDevices> TargetDevice);
 		void CreateLogicalDevice();
+		uint32_t findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags props);
 	
 		inline VkDevice GetVkLogicalDevice() { return m_VkLogicalDevice; }
 		inline VkQueue getGraphicsQueue() { return m_graphicsQueue; }

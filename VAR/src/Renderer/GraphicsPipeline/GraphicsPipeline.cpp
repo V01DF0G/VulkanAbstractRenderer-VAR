@@ -9,17 +9,27 @@ namespace VAR_CORE
 		:m_TargetDevice(TargetedDevice),m_TargetLayout(TargetedLayout), m_TargetRenderPass(TargetedRenderPass), m_TargetShaderModules(TargetedShaderModules)
 	{
 		m_PipelineCreateInfo.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
-	
-		m_PipelineCreateInfo.pVertexInputState = &m_FixedFuncs->m_vertexInputInfo;
-		m_PipelineCreateInfo.pInputAssemblyState = &m_FixedFuncs->m_inputAssemblyCreateInfo;
+		m_PipelineCreateInfo.pVertexInputState = &m_FixedFuncs.m_vertexInputInfo;
+		m_PipelineCreateInfo.pInputAssemblyState = &m_FixedFuncs.m_inputAssemblyCreateInfo;
 		m_PipelineCreateInfo.pViewportState = &m_ViewportStateCreateInfo;
-		m_PipelineCreateInfo.pRasterizationState = &m_FixedFuncs->m_RasterizerInfo;
-		m_PipelineCreateInfo.pMultisampleState = &m_FixedFuncs->m_MultisamplingInfo;
+		m_PipelineCreateInfo.pRasterizationState = &m_FixedFuncs.m_RasterizerInfo;
+		m_PipelineCreateInfo.pMultisampleState = &m_FixedFuncs.m_MultisamplingInfo;
 		m_PipelineCreateInfo.pDepthStencilState = nullptr;
-		m_PipelineCreateInfo.pColorBlendState = &m_FixedFuncs->m_colorBlendingStateInfo;
+		m_PipelineCreateInfo.pColorBlendState = &m_FixedFuncs.m_colorBlendingStateInfo;
 		m_PipelineCreateInfo.pDynamicState = nullptr;
 	}
 	
+	void GraphicsPipeline::setupVertexInput(std::vector<VertexInputBase*> TargetedVertexInput)
+	{
+		m_BindingDescription = TargetedVertexInput.at(0)->getBindingDescription(0);
+		m_AttributeDescription = TargetedVertexInput.at(0)->getAttributeDescription(0);
+
+		m_FixedFuncs.m_vertexInputInfo.vertexBindingDescriptionCount = 1;
+		m_FixedFuncs.m_vertexInputInfo.vertexAttributeDescriptionCount = m_AttributeDescription.size();
+		m_FixedFuncs.m_vertexInputInfo.pVertexBindingDescriptions = &m_BindingDescription;
+		m_FixedFuncs.m_vertexInputInfo.pVertexAttributeDescriptions = m_AttributeDescription.data();
+	}
+
 	void GraphicsPipeline::createGraphicsPipeline()
 	{	
 		m_PipelineCreateInfo.stageCount = m_TargetShaderModules->getCurrentShaderModules().size();

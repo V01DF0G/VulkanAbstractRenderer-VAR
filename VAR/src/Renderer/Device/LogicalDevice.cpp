@@ -71,6 +71,20 @@ namespace VAR_CORE
 	}
 	
 	
+	uint32_t LogicalDevice::findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags props)
+	{
+		VkPhysicalDeviceMemoryProperties memProperties;
+		vkGetPhysicalDeviceMemoryProperties(m_physDevices->getSelectedPhysDevice(), &memProperties);
+
+		for (uint32_t i = 0; i < memProperties.memoryTypeCount; i++) {
+			if ((typeFilter & (1 << i)) && (memProperties.memoryTypes[i].propertyFlags & props) == props) {
+				return i;
+			}
+		}
+
+		RENDER_LOG_CRIT("Failed to find suitable memory type !"); 
+	}
+
 	LogicalDevice::~LogicalDevice()
 	{
 		vkDestroyDevice(m_VkLogicalDevice, nullptr);

@@ -34,6 +34,7 @@ namespace VAR_CORE
 		}
 	}
 	
+
 	void CommandBufferPool::createCommandBuffers()
 	{
 		m_CommandBuffers.resize(m_TargetFrameBufferPool->getFrameBuffers().size());
@@ -84,9 +85,18 @@ namespace VAR_CORE
 			vkCmdBeginRenderPass(m_CommandBuffers[i], &m_TargetedRenderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
 	
 			vkCmdBindPipeline(m_CommandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, m_TargetGraphicsPipeline->getvkPipeline());
-	
+			
+			if (m_TargetBuffer != nullptr)
+			{
+				VkBuffer vertexBuffers[] = { m_TargetBuffer->getVkbuffer() };
+				VkDeviceSize offsets[] = {0};
+				vkCmdBindVertexBuffers(m_CommandBuffers[i], 0, 1, vertexBuffers, offsets);
+				vkCmdDraw(m_CommandBuffers[i], m_TargetBuffer->getTargetVertices().size(), 1, 0, 0);
+			}
+			else
+			{
 			vkCmdDraw(m_CommandBuffers[i], 3, 1, 0, 0);
-	
+			}
 			vkCmdEndRenderPass(m_CommandBuffers[i]);
 	
 			if (vkEndCommandBuffer(m_CommandBuffers[i]) != VK_SUCCESS)

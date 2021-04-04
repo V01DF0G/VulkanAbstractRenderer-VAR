@@ -89,7 +89,13 @@ set(src__Renderer__Rendering__MultiThreading
     "src/Renderer/Rendering/MultiThreading/GraphicsThreadPool.cpp"
     "src/Renderer/Rendering/MultiThreading/GraphicsThreadPool.h"
     )
-source_group("src\\Renderer\\Rendering\\MultiThreading" FILES ${src__Renderer__Rendering__FrameBuffers})
+source_group("src\\Renderer\\Rendering\\MultiThreading" FILES ${src__Renderer__Rendering__MultiThreading})
+
+set(src__Renderer__Rendering__Buffers
+    "src/Renderer/Rendering/Buffers/VertexBuffer.cpp"
+    "src/Renderer/Rendering/Buffers/VertexBuffer.h"
+    )
+source_group("src\\Renderer\\Rendering\\Buffers" FILES ${src__Renderer__Rendering__Buffers})
 
 set(src__Renderer__RenderPass
     "src/Renderer/RenderPass/RenderPass.cpp"
@@ -131,6 +137,12 @@ set(src__Renderer__Window
 )
 source_group("src\\Renderer\\Window" FILES ${src__Renderer__Window})
 
+set(src__VertexInputs
+    "src/VertexInputs/VertexInputBase.h"
+)
+source_group("src\\VertexInputs" FILES ${src__VertexInputs})
+
+
 set(ALL_FILES
     ${src__Logger}
     ${src__Precompiled}
@@ -146,12 +158,14 @@ set(ALL_FILES
     ${src__Renderer__Rendering__CommandBuffers}
     ${src__Renderer__Rendering__FrameBuffers}
     ${src__Renderer__Rendering__MultiThreading}
+    ${src__Renderer__Rendering__Buffers}
     ${src__Renderer__RenderPass}
     ${src__Renderer__ShaderModules}
     ${src__Renderer__Swapchain}
     ${src__Renderer__Utilities__CustomTypes}
     ${src__Renderer__Utilities__FileManagment}
     ${src__Renderer__Window}
+    ${src__VertexInputs}
 )
 
 add_library(${PROJECT_NAME} STATIC ${ALL_FILES})
@@ -202,6 +216,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Rendering/CommandBuffers;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Rendering/FrameBuffers;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Rendering/MultiThreading;"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Rendering/Buffers;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Renderpass;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/ShaderModules;"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer/Pipelines;"
@@ -218,6 +233,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     "${GLFW_INCLUDE_DIR}"
     "${CMAKE_CURRENT_SOURCE_DIR}/Vendor/Vulkan/glad/include;"
     "${CMAKE_CURRENT_SOURCE_DIR}/Vendor/glm;"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/VertexInputs;"
 )
 
 

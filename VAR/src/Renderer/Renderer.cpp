@@ -30,6 +30,21 @@ namespace VAR_CORE
 			m_FrameDrawer = std::make_shared<FrameDrawer>(m_LogicalDevice, m_Swapchain, m_CommandBufferPool, m_GraphicsThreadPool);
 		}
 
+		void Renderer::setupPipelineforInput(std::vector<VertexInputBase*> Inputs)
+		{
+			if (m_GraphicsPipeline != nullptr)
+			{
+				m_VertexInput = &Inputs;
+				m_GraphicsPipeline->setupVertexInput(*m_VertexInput);
+				m_VertexBuffer = std::make_shared<VertexBuffer>(m_LogicalDevice, *m_VertexInput);
+			}
+			else
+			{
+				RENDER_LOG_ERR("Please allocate graphics pipeline first before setting it's input");
+			}
+
+		}
+
 		void Renderer::Init()
 		{
 			m_window->createWindow(); // Creates Window
@@ -48,10 +63,13 @@ namespace VAR_CORE
 			m_PipelineLayout->createPipelineLayout();
 			m_RenderPass->createRenderPass();
 			m_GraphicsPipeline->createGraphicsPipeline();
-
 			m_FrameBufferPool->createFrameBuffers();
-
 			m_CommandBufferPool->createCommandPool();
+			if (m_VertexBuffer != nullptr)
+			{
+				m_VertexBuffer->createVertexBuffer();
+				m_CommandBufferPool->setupCommandPoolforVertexBuffers(m_VertexBuffer);
+			}
 			m_CommandBufferPool->createCommandBuffers();
 			m_CommandBufferPool->startCommandBufferRecord();
 			m_CommandBufferPool->startTargetedRenderPass();
@@ -62,7 +80,7 @@ namespace VAR_CORE
 
 		Renderer::~Renderer()
 		{
-
+			
 		}
 
 	}

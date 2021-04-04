@@ -6,6 +6,7 @@
 #include "RenderPass/RenderPass.h"
 #include "Rendering/FrameBuffers/FrameBufferPool.h"
 #include "GraphicsPipeline/GraphicsPipeline.h"
+#include "Buffers/VertexBuffer.h"
 
 
 
@@ -18,6 +19,7 @@ namespace VAR_CORE
 		~CommandBufferPool();
 	
 		void createCommandPool();
+		void setupCommandPoolforVertexBuffers(std::shared_ptr<VertexBuffer> TargetedBuffer) { m_TargetBuffer = TargetedBuffer; }
 		void createCommandBuffers();
 		void startCommandBufferRecord();
 		void startTargetedRenderPass();
@@ -40,5 +42,6 @@ namespace VAR_CORE
 	
 		VkRenderPassBeginInfo m_TargetedRenderPassBeginInfo = {};
 		
+		std::shared_ptr<VertexBuffer> m_TargetBuffer = nullptr;
 	};
 }

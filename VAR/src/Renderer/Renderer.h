@@ -16,6 +16,8 @@
 #include "Rendering/CommandBuffers/CommandBufferPool.h"
 #include "Rendering/MultiThreading/GraphicsThreadPool.h"
 #include "Rendering/FrameDrawer.h"
+#include "../VertexInputs/VertexInputBase.h"
+#include "Rendering/Buffers/VertexBuffer.h"
 
 
 namespace VAR_CORE
@@ -30,6 +32,7 @@ namespace VAR_CORE
 			void Init();
 			void AllocateRendererObjects();
 			void setShaderLocs(std::vector<const char*> val) { ShaderLocs = val; }
+			void setupPipelineforInput(std::vector<VertexInputBase*> Inputs);
 			inline bool isRendererRunning() { return m_window->isWindowRunning(); }
 			inline void rendererPollEvents() { return glfwPollEvents(); }
 			inline void rendererDrawFrame() { return m_FrameDrawer->drawFrame(); }
@@ -52,6 +55,9 @@ namespace VAR_CORE
 			std::shared_ptr<CommandBufferPool> m_CommandBufferPool = nullptr;
 			std::shared_ptr<GraphicsThreadPool> m_GraphicsThreadPool = nullptr;
 			std::shared_ptr<FrameDrawer> m_FrameDrawer = nullptr;
+
+			std::vector<VertexInputBase*>* m_VertexInput = nullptr;
+			std::shared_ptr<VertexBuffer> m_VertexBuffer = nullptr;
 		};
 	}
 }

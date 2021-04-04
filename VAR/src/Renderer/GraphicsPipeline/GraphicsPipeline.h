@@ -7,6 +7,7 @@
 #include "ShaderModules/ShaderModules.h"
 #include "RenderPass/RenderPass.h"
 #include "Device/LogicalDevice.h"
+#include "../VertexInputs/VertexInputBase.h"
 
 namespace VAR_CORE
 {
@@ -14,9 +15,10 @@ namespace VAR_CORE
 	{
 	public:
 		GraphicsPipeline(std::shared_ptr<LogicalDevice> TargetedDevice,std::shared_ptr<PipelineLayout> TargetedLayout, std::shared_ptr<RenderPass> TargetedRenderPass, std::shared_ptr<ShaderModules> TargetedShaderModules);
+		void setupVertexInput(std::vector<VertexInputBase*> TargetedVertexInput);
 		void createGraphicsPipeline();
 		~GraphicsPipeline();
-	
+		
 	
 		inline VkPipeline getvkPipeline() const { return m_vkPipeline; }
 	private:
@@ -27,10 +29,12 @@ namespace VAR_CORE
 	
 		VkGraphicsPipelineCreateInfo m_PipelineCreateInfo = {};
 		VkPipeline m_vkPipeline = VK_NULL_HANDLE;
-		std::shared_ptr<FixedFuncStruct> m_FixedFuncs = std::make_shared<FixedFuncStruct>();
+		FixedFuncStruct m_FixedFuncs;
 	
 		VkPipelineViewportStateCreateInfo m_ViewportStateCreateInfo{};
 	
+		VkVertexInputBindingDescription m_BindingDescription = {};
+		std::vector<VkVertexInputAttributeDescription> m_AttributeDescription = {};
 		
 	};
 }

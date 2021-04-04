@@ -47,7 +47,7 @@ namespace VAR_CORE
 		m_SubmitInfo.pSignalSemaphores = signalSemaphores;
 	
 		vkResetFences(m_TargetDevice->GetVkLogicalDevice(), 1, &m_TargetGThreadPool->getinFlightFences()[currentframe]);
-	
+
 		if (vkQueueSubmit(m_TargetDevice->getGraphicsQueue(), 1, &m_SubmitInfo, m_TargetGThreadPool->getinFlightFences()[currentframe]))
 		{
 			RENDER_LOG_CRIT("Failed to submit command buffer!");
